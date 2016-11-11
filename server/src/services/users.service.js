@@ -1,5 +1,4 @@
 var connection = require('../utils/mysql-connection');
-var usersValidator = require('../validators/users.validator');
 
 module.exports = {
     getAll: function(callback) {
@@ -12,7 +11,7 @@ module.exports = {
         connection.query('SELECT * FROM `users` WHERE `username` = ?', [username], callback);
     },
     add: function(newUser, callback) {
-        connection.query('INSERT INTO `users` SET ?', newUser, callback);
+        connection.query('INSERT INTO `users` SET ?', [newUser], callback);
     },
     deleteById: function(id, callback) {
         connection.query('DELETE FROM `users` WHERE `id` = ? ', [id], callback);
