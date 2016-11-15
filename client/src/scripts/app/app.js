@@ -1,0 +1,24 @@
+(function() {
+    var app = angular.module('taxiServiceApp', ['ngProgress', 'ui.router']);
+
+    app.config(config);
+
+    config.$inject = ['$stateProvider', '$locationProvider'];
+
+    function config($stateProvider, $locationProvider) {
+        $locationProvider.hashPrefix('!');
+
+        var states = [
+            {
+                name: 'users',
+                url: '/users',
+                component: 'usersComponent'
+            }
+
+        ];
+
+        states.forEach(function(state) {
+            $stateProvider.state(state);
+        });
+    }
+})();

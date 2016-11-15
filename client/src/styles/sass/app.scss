@@ -1,0 +1,133 @@
+@import './partials/variables.scss';
+@import './partials/progress-bar.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, 
+body {
+  height: 100%;
+}
+
+body {
+  background-color: $background-gray;
+}
+
+a {
+  text-decoration: none;
+}
+
+section {
+  color: $flat-gray;
+  font-family: $arial-font-stack;
+}
+
+.page-container {
+  min-height: 100%;
+  margin-bottom: -200px;
+}
+
+.content-container {
+  margin: 0px auto;
+  width: 70%;
+}
+
+.page-header {
+  padding: 30px;
+  height: 100px;
+}
+
+.page-label {
+  color: white;
+}
+
+.addition-info {
+  bottom: 10px;
+  position: absolute;
+  right: 35px;
+}
+
+.contributor,
+.publish-date {
+  color: $flat-light-gray;
+  font-size: 14px;
+  text-align: right;  
+}
+
+.navigation-container {
+  background-color: white;
+  display: flex;
+  height: 60px;
+  justify-content: flex-end;
+  padding-right: 30px;
+}
+
+.navigation-button {
+  background-color: inherit;
+  border: 0px;
+  color: $flat-gray;
+  font-size: 20px;
+  margin-left: 30px;
+}
+
+.navigation-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.push {
+  height: 200px;
+}
+
+.page-header,
+.page-footer {
+  background-color: $flat-gray;
+ 
+}
+
+.page-footer {
+  height: 200px;
+  padding-top: 30px;
+}
+
+.footer-content {
+  color: white;
+  font-family: $arial-font-stack;
+  margin: 20px auto;
+  text-align: center;
+  width: 300px;
+
+  a {
+    border: 1px solid white;
+    border-radius: 50%;
+    color: white;
+    font-size: 26px;
+    display: block;
+    height: 50px;
+    margin-left: 10px;
+    padding-top: 8px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    width: 50px;
+  }
+
+  a:hover {
+    background-color: white;
+    color: $flat-gray;
+  }
+}
+
+.follow {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.copyright {
+  font-size: 14px;
+}
+

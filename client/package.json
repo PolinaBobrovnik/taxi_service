@@ -1,7 +1,7 @@
 {
-  "name": "server-side",
+  "name": "client-side",
   "version": "1.0.0",
-  "description": "server-side of application",
+  "description": "client-side of application",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/artsiomshushkevich/Taxi-Service.git"
   },
   "keywords": [
-    "node.js"
+    "angular"
   ],
   "author": "artsiomshushkevich",
   "license": "ISC",
@@ -20,9 +20,19 @@
   },
   "homepage": "https://github.com/artsiomshushkevich/Taxi-Service#readme",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "express-validator": "^2.21.0",
-    "mysql": "^2.12.0"
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-ui-bootstrap": "^2.2.0",
+    "angular-ui-router": "^0.3.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-webserver": "^0.9.1"
   }
 }
