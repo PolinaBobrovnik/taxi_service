@@ -35,7 +35,7 @@ section {
   width: 70%;
 }
 
-.page-header {
+.custom-page-header {
   padding: 30px;
   height: 100px;
 }
@@ -82,10 +82,9 @@ section {
   height: 200px;
 }
 
-.page-header,
+.custom-page-header,
 .page-footer {
   background-color: $flat-gray;
- 
 }
 
 .page-footer {

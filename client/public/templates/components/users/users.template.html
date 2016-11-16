@@ -1,5 +1,7 @@
+
 <ul>
     <li ng-repeat="user in $ctrl.users">
         {{ user.username }}
+        <button ng-click="$ctrl.deleteById(user.id)">delete</button>
     </li>
 </ul>

@@ -5,7 +5,7 @@
     
     usersHttpService.$inject = ['baseHttpService', 'constantsService'];
 
-    function usersHttpService(baseHttpService) {
+    function usersHttpService(baseHttpService, constantsService) {
         var usersUrl = constantsService.SERVER_URL + '/users/';
 
         return {
@@ -14,6 +14,9 @@
                     .then(function(response) {
                         return response.data;
                     });
+            },
+            deleteByid: function(id) {
+                return baseHttpService.makeRequest('DELETE', usersUrl + id);
             }
         };
     }

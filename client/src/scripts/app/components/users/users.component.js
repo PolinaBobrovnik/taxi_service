@@ -2,25 +2,29 @@
     angular
         .module('taxiServiceApp')
         .component('usersComponent', {
-            templateUrl: '../templates/components/users/users.template.html',
-            controller: ['usersHttpService', function(usersHttpService) {
-                 var self = this;
-
-                usersHttpService.getAll()
-                    .then(function(data) {
-                        self.users = data;
-                    });
-            }]
+           templateUrl: '../templates/components/users/users.template.html',
+           controller: UsersController,
         });
     
-    // UsersController.$inject = ['usersHttpService'];
+    UsersController.$inject = ['usersHttpService'];
 
-    // function UsersController(usersHttpService) {
-    //     var self = this;
+    function UsersController(usersHttpService) {
+        var self = this;
 
-    //     usersHttpService.getAll()
-    //         .then(function(data) {
-    //             self.users = data;
-    //         });
-    // }
+        self.getAll = function() {
+            usersHttpService.getAll()
+                .then(function(response) {
+                    self.users = response;
+                });
+        };
+
+        self.deleteById = function(id) {
+            usersHttpService.deleteById(id)
+                .then(function() {
+                    
+                });
+        };
+
+        self.getAll();
+    }
 })();

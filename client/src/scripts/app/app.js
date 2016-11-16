@@ -1,7 +1,7 @@
 (function() {
-    var app = angular.module('taxiServiceApp', ['ngProgress', 'ui.router']);
+angular.module('taxiServiceApp', ['ngProgress', 'ui.router']);
 
-    app.config(config);
+    angular.module('taxiServiceApp').config(config);
 
     config.$inject = ['$stateProvider', '$locationProvider'];
 
@@ -9,12 +9,7 @@
         $locationProvider.hashPrefix('!');
 
         var states = [
-            {
-                name: 'users',
-                url: '/users',
-                component: 'usersComponent'
-            }
-
+           { name: 'users', url: '/users', component: 'usersComponent' },
         ];
 
         states.forEach(function(state) {
