@@ -1,5 +1,5 @@
 (function() {
-angular.module('taxiServiceApp', ['ngProgress', 'ui.router']);
+angular.module('taxiServiceApp', ['ngProgress', 'ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']);
 
     angular.module('taxiServiceApp').config(config);
 
@@ -9,7 +9,11 @@ angular.module('taxiServiceApp', ['ngProgress', 'ui.router']);
         $locationProvider.hashPrefix('!');
 
         var states = [
-           { name: 'users', url: '/users', component: 'usersComponent' },
+            { 
+                name: 'users', 
+                url: '/users', 
+                component: 'usersComponent' 
+            },
         ];
 
         states.forEach(function(state) {

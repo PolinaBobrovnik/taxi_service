@@ -46,12 +46,12 @@ router.post('/', function(req, res, next) {
             password: req.body.password
         };
 
-        usersService.add(newUser, function(err) {
+        usersService.add(newUser, function(err, result) {
             if (err) {
                 return next(err);
             }
 
-            res.sendStatus(200);
+            res.status(200).send({newUserId: result.insertId});
         });
     });
 });

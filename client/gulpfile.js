@@ -17,6 +17,9 @@ var plumberConfig = {
 gulp.task('scripts', function() {
   return gulp.src(['./node_modules/**/angular.min.js',
                    './node_modules/**/angular-ui-router.min.js',
+                   'node_modules/**/angular-animate.min.js',
+                   './node_modules/**/angular-sanitize.min.js',
+                   './node_modules/**/ui-bootstrap-tpls.js',
                    './src/**/ngProgress.min.js',
                    './src/**/app.js', 
                    './src/scripts/app/**/*.js'

@@ -15,6 +15,8 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(bodyParser.json());
+
 app.use(expressValidator());
 
 app.use('/api/users', usersRouter);

@@ -10,13 +10,13 @@
 
         return {
             getAll: function() {
-                return baseHttpService.makeRequest('GET', usersUrl)
-                    .then(function(response) {
-                        return response.data;
-                    });
+                return baseHttpService.makeRequest('GET', usersUrl);
             },
             deleteByid: function(id) {
                 return baseHttpService.makeRequest('DELETE', usersUrl + id);
+            },
+            add: function(newUser) {
+                return baseHttpService.makeRequest('POST', usersUrl, newUser);
             }
         };
     }
