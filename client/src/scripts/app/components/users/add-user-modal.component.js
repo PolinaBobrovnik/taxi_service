@@ -25,10 +25,8 @@
             self.clearErrors();
 
             usersHttpService.add(self.newUser)
-                .then(function(response) {
-                    self.newUser.id = response.data.newUserId;
-
-                    self.close({$value: self.newUser});
+                .then(function() {
+                    self.close();
                 }, function(response) {
                     self.errors = response.data;
                 });       

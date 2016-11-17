@@ -1,5 +1,5 @@
 var app = require('express')();
-var usersRouter = require('./routers/users.router');
+var usersRouter = require('./modules/users/users.router.js');
 var errorsMessages = require('./utils/constants/errors-messages');
 var expressValidator = require('express-validator');
 var bodyParser = require('body-parser');

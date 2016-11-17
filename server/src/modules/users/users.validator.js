@@ -1,5 +1,5 @@
-var errorsMessages = require('../utils/constants/errors-messages');
-var regularExpressions = require('../utils/constants/regular-expressions');
+var errorsMessages = require('../../utils/constants/errors-messages');
+var regularExpressions = require('../../utils/constants/regular-expressions');
 
 module.exports = {
     getValidationErrosDuringRegistration: function(req) {

@@ -12,8 +12,11 @@
             getAll: function() {
                 return baseHttpService.makeRequest('GET', usersUrl);
             },
-            deleteByid: function(id) {
+            deleteById: function(id) {
                 return baseHttpService.makeRequest('DELETE', usersUrl + id);
+            },
+            update: function(updatedUser) {
+                return baseHttpService.makeRequest('PUT', usersUrl, updatedUser);    
             },
             add: function(newUser) {
                 return baseHttpService.makeRequest('POST', usersUrl, newUser);

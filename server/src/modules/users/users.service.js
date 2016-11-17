@@ -1,4 +1,4 @@
-var connection = require('../utils/mysql-connection');
+var connection = require('../../utils/mysql-connection');
 
 module.exports = {
     getAll: function(callback) {

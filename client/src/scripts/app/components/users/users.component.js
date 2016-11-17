@@ -18,8 +18,8 @@
             });
 
             modalInstance.result
-                .then(function(newUser) {
-                    self.users.push(newUser);
+                .then(function() {
+                    self.getAll();
                 });
         };
 
@@ -33,11 +33,29 @@
                 });
         };
 
-        
         self.deleteById = function(id) {
             usersHttpService.deleteById(id)
                 .then(function() {
-                    
+                    var index = self.users.map(function(user) { return user.id; }).indexOf(id);
+
+                    self.users.splice(index, 1);
+                });
+        };
+
+        self.update = function(user) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: 'updateUserModalComponent', 
+                resolve: {
+                    updatedUser: function() {
+                        return user;
+                    }
+                }
+            });
+
+            modalInstance.result
+                .then(function() {
+                    self.getAll();
                 });
         };
 
