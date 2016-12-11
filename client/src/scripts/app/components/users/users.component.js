@@ -11,7 +11,7 @@
     function UsersController(usersHttpService, progressBarService, $uibModal) {
         var self = this;
 
-        self.add = function() {
+        self.addOne = function() {
             var modalInstance = $uibModal.open({
                 animation: true,
                 component: 'addUserModalComponent'
@@ -33,16 +33,19 @@
                 });
         };
 
-        self.deleteById = function(id) {
-            usersHttpService.deleteById(id)
+        self.deleteOneById = function(id) {
+            progressBarService.start();
+
+            usersHttpService.deleteOneById(id)
                 .then(function() {
                     var index = self.users.map(function(user) { return user.id; }).indexOf(id);
 
                     self.users.splice(index, 1);
+                    progressBarService.complete();
                 });
         };
 
-        self.update = function(user) {
+        self.updateOne = function(user) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 component: 'updateUserModalComponent', 

@@ -12,15 +12,18 @@
             getAll: function() {
                 return baseHttpService.makeRequest('GET', usersUrl);
             },
-            deleteById: function(id) {
+            getRoles: function() {
+                return baseHttpService.makeRequest('GET', usersUrl + '/roles/');
+            },
+            deleteOneById: function(id) {
                 return baseHttpService.makeRequest('DELETE', usersUrl + id);
             },
-            update: function(updatedUser) {
+            updateOne: function(updatedUser) {
                 return baseHttpService.makeRequest('PUT', usersUrl, updatedUser);    
             },
-            add: function(newUser) {
+            addOne: function(newUser) {
                 return baseHttpService.makeRequest('POST', usersUrl, newUser);
-            }
+            },
         };
     }
 })();

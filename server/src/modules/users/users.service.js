@@ -1,22 +1,46 @@
 var connection = require('../../utils/mysql-connection');
 
-module.exports = {
-    getAll: function(callback) {
-        connection.query('SELECT * FROM `users`', callback);
-    },
-    getById: function(id, callback) {
-        connection.query('SELECT * FROM `users` WHERE `id` = ?', [id], callback);
-    },
-    getByUsername: function(username, callback) {
-        connection.query('SELECT * FROM `users` WHERE `username` = ?', [username], callback);
-    },
-    add: function(newUser, callback) {
-        connection.query('INSERT INTO `users` SET ?', [newUser], callback);
-    },
-    deleteById: function(id, callback) {
-        connection.query('DELETE FROM `users` WHERE `id` = ? ', [id], callback);
-    },
-    update: function(updatedUser, id, callback) {
-        connection.query('UPDATE `users` SET ? WHERE `id` = ?',[updatedUser, id], callback)
+module.exports = function() {
+    var selectAll = `
+        SELECT 
+            u.id AS id,
+            username,
+            name AS firstname,
+            last_name AS lastname,
+            role, 
+            roles_id AS rolesId
+         FROM users u
+         JOIN roles r
+            ON r.id = u.roles_id
+    `;
+    var selectOneById = selectAll + 'WHERE u.id = ?';
+    var addOne = 'INSERT INTO users SET ?';
+    var deleteOne = 'DELETE FROM users WHERE id = ?';
+    var updateOne = 'UPDATE users SET ? WHERE id = ?';
+    var selectRoles = 'SELECT * FROM roles';
+    var selectPassword = 'SELECT password FROM users WHERE id = ?';
+
+    return {
+        getAll: function(callback) {
+            connection.query(selectAll, callback);
+        },
+        getOneById: function(id, callback) {
+            connection.query(selectOneById, [id], callback);
+        },
+        getPassword: function(id, callback) {
+            connection.query(selectPassword, [id], callback);
+        },
+        getRoles: function(callback) {
+            connection.query(selectRoles, callback);
+        },
+        addOne: function(newUser, callback) {
+            connection.query(addOne, [newUser], callback);
+        },
+        deleteOneById: function(id, callback) {
+            connection.query(deleteOne, [id], callback);
+        },
+        updateOne: function(updatedUser, id, callback) {
+            connection.query(updateOne,[updatedUser, id], callback)
+        }
     }
-}
+};

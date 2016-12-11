@@ -15,16 +15,23 @@
     function AddUserModalController(usersHttpService) {
         var self = this;
 
+        self.$onInit = function() {
+            usersHttpService.getRoles()
+                .then(function(response) {
+                    self.roles = response.data
+                });
+        };
+
         self.clearErrors = function() {
             delete self.errors;
         };
 
-        self.add = function($event) {
+        self.addOne = function($event) {
             $event.preventDefault();
 
             self.clearErrors();
 
-            usersHttpService.add(self.newUser)
+            usersHttpService.addOne(self.newUser)
                 .then(function() {
                     self.close();
                 }, function(response) {

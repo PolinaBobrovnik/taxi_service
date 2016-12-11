@@ -19,13 +19,15 @@
         self.$onInit = function() {
             self.updatedUser = {
                 id: self.resolve.updatedUser.id,
-                newUsername: self.resolve.updatedUser.username,
-                oldUsername: self.resolve.updatedUser.username
+                username: self.resolve.updatedUser.username,
+                firstname: self.resolve.updatedUser.firstname,
+                lastname: self.resolve.updatedUser.lastname,
+                rolesId: self.resolve.updatedUser.rolesId
             };
         };
 
-        self.update = function() {
-            usersHttpService.update(self.updatedUser)
+        self.updateOne = function() {
+            usersHttpService.updateOne(self.updatedUser)
                 .then(function() {
                     self.close();
                 }, function(response) {

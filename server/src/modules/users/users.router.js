@@ -1,8 +1,7 @@
 var router = require('express').Router();
-var usersService = require('./users.service');
-var usersValidator = require('./users.validator');
-var errorsMessages = require('../../utils/constants/errors-messages');
-var bcrypt = require('bcrypt');
+var usersService = require('./users.service')();
+var usersValidator = require('./users.validator')();
+var bcrypt = require('bcryptjs');
 
 router.get('/', function(req, res, next) {
     usersService.getAll(function(err, rows) {
@@ -15,7 +14,21 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-    usersService.getById(req.params.id, function(err, rows) {
+    if (req.url === '/roles/') {
+        return next();
+    }
+
+    usersService.getOneById(req.params.id, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).send(rows);
+    });
+});
+
+router.get('/roles/', function(req, res, next) {
+    usersService.getRoles(function(err, rows) {
         if (err) {
             return next(err);
         }
@@ -25,84 +38,75 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    var validationErrors = usersValidator.getValidationErrosDuringRegistration(req);
+    var validationErrors = usersValidator.validate(req);
 
     if (validationErrors) {
         res.status(400).send(validationErrors);
         return;
     }
 
-    usersService.getByUsername(req.body.username, function(err, rows) {
+    var newUser = {
+        roles_id: req.body.rolesId,
+        username: req.body.username,
+        name: req.body.firstname,
+        last_name: req.body.lastname ? req.body.lastname : ''
+    };
+
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
         if (err) {
-            return next(err);
+           return next(err);
         }
 
-        if (rows.length !== 0) {
-            res.status(400).send([{msg: errorsMessages.validationErrors.users.BUSY_USERNAME}]);
-            return;
-        }
+        newUser.password = hash;
 
-        var newUser = {
-            username: req.body.username
-        };
-
-        bcrypt.hash(req.body.password, 10, function (err, hash) {
+        usersService.addOne(newUser, function(err, result) {
             if (err) {
-                next(err);
+                return next(err);
             }
 
-            newUser.password = hash;
-
-            usersService.add(newUser, function(err, result) {
-                if (err) {
-                    return next(err);
-                }
-
-                res.status(200).send({newUserId: result.insertId});
-            });
+            res.status(200).send({newUserId: result.insertId});
         });
     });
+
 });
 
 router.put('/', function(req, res, next) {
-    var validationErrors = usersValidator.getValidationErrorsDuringUpdating(req);
+    var validationErrors = usersValidator.validate(req);
 
     if (validationErrors) {
         res.status(400).send(validationErrors);
         return;
     }
 
-    usersService.getById(req.body.id, function(err, rows) {
+    usersService.getPassword(req.body.id, function(err, rows) {
         if (err) {
             return next(err);
         }
 
-        if (rows.length === 0) {
-            return next(new Error());
-        }
-
         bcrypt.compare(req.body.oldPassword, rows[0].password, function(err, result) {
+            if (err) {
+                return next(err);
+            }
+
             if (!result) {
-                res.status(400).send([{msg: errorsMessages.validationErrors.users.INVALID_OLD_PASSWORD}]);
+                res.status(400).send([{msg: 'Invalid old password! Please, retype it.'}]);
                 return;
             }
 
-            usersService.getByUsername(req.body.newUsername, function(err, rows) {
+            var updatedUser = {
+                username: req.body.username,
+                last_name: req.body.lastname ? req.body.lastname : '',
+                name: req.body.firstname,
+            };
+
+            bcrypt.hash(req.body.password, 10, function (err, hash) {
                 if (err) {
                     return next(err);
                 }
 
-                if (rows.length !== 0 && req.body.newUsername !== req.body.oldUsername) {
-                    res.status(400).send([{msg: errorsMessages.validationErrors.users.BUSY_USERNAME}]);
-                    return;
-                }
+                updatedUser.password = hash;
 
-                var updatedUser = {
-                    username: req.body.newUsername,
-                    password: req.body.newPassword
-                };
-
-                usersService.update(updatedUser, req.body.id, function(err) {
+                usersService.updateOne(updatedUser, req.body.id, function(err) {
                     if (err) {
                         return next(err);
                     }
@@ -115,7 +119,7 @@ router.put('/', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-    usersService.deleteById(req.params.id, function(err) {
+    usersService.deleteOneById(req.params.id, function(err) {
         if (err) {
             return next(err);
         }

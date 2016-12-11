@@ -1,17 +1,10 @@
 var app = require('express')();
-var usersRouter = require('./modules/users/users.router.js');
-var errorsMessages = require('./utils/constants/errors-messages');
+var usersRouter = require('./modules/users/users.router');
 var expressValidator = require('express-validator');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    next();
-});
+app.use(cors());
 
 app.use(bodyParser.urlencoded({extended: true}));
 

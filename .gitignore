@@ -1,3 +1,5 @@
 server/node_modules/
 client/node_modules/
+client/public/js/
+client/public/css/app.css
 .idea/

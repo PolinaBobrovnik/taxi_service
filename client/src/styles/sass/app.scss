@@ -25,6 +25,23 @@ section {
   font-family: $arial-font-stack;
 }
 
+.forms-select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  height: 34px;
+  width: 100%;
+}
+
+.forms-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin-left: 10px;
+  }
+}
+
 .page-container {
   min-height: 100%;
   margin-bottom: -200px;

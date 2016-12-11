@@ -9,6 +9,13 @@
 
     <form>
         <div class="form-group">
+            <label for="roles">Select role:</label>
+            <select id="roles" class="forms-select" ng-model="$ctrl.newUser.rolesId">
+                <option value="{{ role.id }}" ng-repeat="role in $ctrl.roles">{{ role.role }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="username">Enter username:</label>
             <input ng-model="$ctrl.newUser.username" type="text" class="form-control" id="username">
         </div>
@@ -23,8 +30,20 @@
             <input ng-model="$ctrl.newUser.confirmPassword" type="password" class="form-control" id="confirm-password">
         </div>
 
-        <button class="btn btn-primary" type="submit" ng-click="$ctrl.add($event)">Add</button>
-        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        <div class="form-group">
+            <label for="firstname">Enter first name:</label>
+            <input ng-model="$ctrl.newUser.firstname" type="text" class="form-control" id="firstname">
+        </div>
+
+        <div class="form-group">
+            <label for="lastname">Enter last name:</label>
+            <input ng-model="$ctrl.newUser.lastname" type="text" class="form-control" id="lastname">
+        </div>
+
+        <div class="forms-buttons-container">
+            <button class="btn btn-primary" type="submit" ng-click="$ctrl.addOne($event)">Add</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>    
     </form>
 </div>
 <div class="modal-footer">
