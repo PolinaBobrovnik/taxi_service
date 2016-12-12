@@ -44,7 +44,7 @@ router.get('/emails/:usersId', function(req, res, next) {
         }
 
         res.status(200).send(rows);
-    })
+    });
 });
 
 router.post('/emails/', function(req, res, next) {
@@ -69,13 +69,13 @@ router.post('/emails/', function(req, res, next) {
     });
 });
 
-router.delete('/emails/:id', function(req, res) {
-    usersService.deleteEmail(req.params.id, function(err) {
+router.delete('/emails/:id', function(req, res, next) {
+    usersService.deleteEmail(req.params.id, function(err, rows) {
         if (err) {
             return next(err);
         }
 
-        res.sendStatus(200);
+        res.status(200).send(rows);
     });
 });
 
@@ -86,7 +86,7 @@ router.get('/phones/:usersId', function(req, res, next) {
         }
 
         res.status(200).send(rows);
-    })
+    });
 });
 
 router.post('/phones/', function(req, res, next) {
@@ -111,13 +111,13 @@ router.post('/phones/', function(req, res, next) {
     });
 });
 
-router.delete('/phones/:id', function(req, res) {
-    usersService.deletePhone(req.params.id, function(err) {
-       if (err) {
-           return next(err);
-       }
+router.delete('/phones/:id', function(req, res, next) {
+    usersService.deletePhone(req.params.id, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
 
-        res.sendStatus(200);
+        res.status(200).send(rows);
     });
 });
 
@@ -148,7 +148,40 @@ router.post('/', function(req, res, next) {
                 return next(err);
             }
 
-            res.status(200).send({newUserId: result.insertId});
+            usersService.getOneById(result.insertId, function(err, rows) {
+                if (err) {
+                    return next(err);
+                }
+
+                function callback(err) {
+                    if (err) {
+                        return next(err);
+                    }
+
+                    res.sendStatus(200);
+                }
+
+                var usersIdObj = {
+                    users_id: rows[0].id
+                };
+
+                switch (rows[0].role) {
+                    case 'driver':
+                        usersService.addDriver(usersIdObj, callback);
+                        break;
+                    case 'client':
+                        usersService.addClient(usersIdObj, callback);
+                        break;
+                    case 'organization':
+                        usersService.addOrganization(usersIdObj, callback);
+                        break;
+                    case 'dispatcher':
+                        usersService.addDispatcher(usersIdObj, callback);
+                        break;
+                    default:
+                        throw new Error('There is not compatible role!');
+                }
+            });
         });
     });
 
@@ -203,12 +236,12 @@ router.put('/', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-    usersService.deleteOneById(req.params.id, function(err) {
+    usersService.deleteOneById(req.params.id, function(err, rows) {
         if (err) {
             return next(err);
         }
 
-        res.sendStatus(200);
+        res.status(200).send(rows);
     });
 });
 

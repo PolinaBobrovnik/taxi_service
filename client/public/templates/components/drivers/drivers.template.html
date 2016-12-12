@@ -1,0 +1,19 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="driver in $ctrl.drivers">
+            <td>{{ driver.firstname }}</td>
+            <td>{{ driver.lastname }}</td>
+
+            <td>
+                <button ng-click="$ctrl.addCar(driver.id)">Add car</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

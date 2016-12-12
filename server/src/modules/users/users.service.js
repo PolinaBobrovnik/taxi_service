@@ -13,18 +13,38 @@ module.exports = function() {
          JOIN roles r
             ON r.id = u.roles_id
     `;
+
     var selectOneById = selectAll + 'WHERE u.id = ?';
+
     var addOne = 'INSERT INTO users SET ?';
+
     var deleteOne = 'DELETE FROM users WHERE id = ?';
+
     var updateOne = 'UPDATE users SET ? WHERE id = ?';
+
     var selectRoles = 'SELECT * FROM roles';
+
     var selectPassword = 'SELECT password FROM users WHERE id = ?';
+
     var addEmail = 'INSERT INTO emails SET ?';
+
     var addPhone = 'INSERT INTO phones SET ?';
+
     var selectEmails = 'SELECT id, email FROM emails WHERE users_id = ?';
+
     var selectPhones = 'SELECT id, number FROM phones WHERE users_id = ?';
+
     var deleteEmail = 'DELETE FROM emails WHERE id = ?';
+
     var deletePhone = 'DELETE FROM phones WHERE id = ?';
+
+    var addDriver = 'INSERT INTO drivers SET ?';
+
+    var addClient = 'INSERT INTO clients SET ?';
+
+    var addOrganization = 'INSERT INTO organizations SET ?';
+
+    var addDispatcher = 'INSERT INTO dispatchers SET ?';
 
     return {
         getAll: function(callback) {
@@ -65,6 +85,18 @@ module.exports = function() {
         },
         deletePhone: function(id, callback) {
             connection.query(deletePhone, [id], callback);
+        },
+        addDriver: function(usersIdObj, callback) {
+            connection.query(addDriver, [usersIdObj], callback);
+        },
+        addClient: function(usersIdObj, callback) {
+            connection.query(addClient, [usersIdObj], callback);
+        },
+        addOrganization: function(usersIdObj, callback) {
+            connection.query(addOrganization, [usersIdObj], callback);
+        },
+        addDispatcher: function(usersIdObj, callback) {
+            connection.query(addDispatcher, [usersIdObj], callback);
         }
-    }
+    };
 };

@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Enter cars's data</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+    <div uib-alert class="alert-danger" ng-show="$ctrl.errors" close="$ctrl.clearErrors()">
+        <p ng-repeat="error in $ctrl.errors">{{ error.msg }}</p>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="brands">Select car's brand:</label>
+            <select id="brands" class="forms-select" ng-model="$ctrl.car.carsBrandsId" ng-change="$ctrl.getCarsModels()">
+                <option value="{{ brand.carsBrandsId }}" ng-repeat="brand in $ctrl.carsBrands">{{ brand.carsBrandsName }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="models">Select car's model:</label>
+            <select id="models" class="forms-select" ng-model="$ctrl.car.carsModelsId">
+                <option value="{{ model.carsModelsId }}" ng-repeat="model in $ctrl.carsModels">{{ model.carsModelsName }}</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="license-plate">License plate:</label>
+            <input ng-model="$ctrl.car.licensePlate" type="text" class="form-control" id="license-plate" placeholder="1245AH">
+        </div>
+
+        <div class="form-group">
+            <label for="manufacture-year">Manufacture year:</label>
+            <input ng-model="$ctrl.car.manufactureYear" type="number" class="form-control" id="manufacture-year" placeholder="1997">
+        </div>
+
+         <div class="form-group">
+            <label for="color">Color:</label>
+            <input ng-model="$ctrl.car.color" type="text" class="form-control" id="color" placeholder="red">
+        </div>
+
+        <div class="forms-buttons-container">
+            <button class="btn btn-primary" type="submit" ng-click="$ctrl.addCar($event)">Add</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>    
+    </form>
+</div>
+<div class="modal-footer">
+</div>

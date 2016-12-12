@@ -14,6 +14,13 @@ angular.module('taxiServiceApp', ['ngProgress', 'ui.router', 'ngAnimate', 'ngSan
                 url: '/users', 
                 component: 'usersComponent' 
             },
+            { 
+                name: 'drivers', 
+                url: '/drivers', 
+                component: 'driversComponent' 
+            },
+            
+
         ];
 
         states.forEach(function(state) {
