@@ -1,9 +1,50 @@
-<button ng-click="$ctrl.addOne()">add new user</button>
-<ul>
+<button ng-click="$ctrl.addOne()">Add new user</button>
+<!--<ul>
     <li ng-repeat="user in $ctrl.users">
         {{ user.username  + ' ' + user.role }}
-        
-        <button ng-click="$ctrl.deleteOneById(user.id)">delete</button>
+        <button ng-click="$ctrl.addPhone(user.id)">Add phone</button>
+        <button ng-click="$ctrl.addEmail(user.id)">Add email</button>
+        <button ng-click="$ctrl.deleteOneById(user.id)">Delete</button>
         <button ng-click="$ctrl.updateOne(user)">Update</button>
     </li>
-</ul>
+</ul>-->
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>username</th>
+        <th>role</th>
+        <th>emails</th>
+        <th>phones</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in $ctrl.users">
+        <td>{{ user.username }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+            <ul>
+                <li ng-repeat="email in user.emails">
+                    {{ email.email }}
+                    <button ng-click="$ctrl.deleteEmail(email.id)">Delete</button>
+                </li>
+            </ul>
+        </td>
+        <td>
+             <ul>
+                <li ng-repeat="phone in user.phones">
+                    {{ phone.number }}
+                    <button ng-click="$ctrl.deletePhone(phone.id)">Delete</button>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <button ng-click="$ctrl.addPhone(user.id)">Add phone</button>
+            <button ng-click="$ctrl.addEmail(user.id)">Add email</button>
+            <button ng-click="$ctrl.deleteOneById(user.id)">Delete</button>
+            <button ng-click="$ctrl.updateOne(user)">Update</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

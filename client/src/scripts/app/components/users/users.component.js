@@ -6,9 +6,9 @@
            controller: UsersController,
         });
     
-    UsersController.$inject = ['usersHttpService', 'progressBarService', '$uibModal'];
+    UsersController.$inject = ['usersHttpService', 'progressBarService', '$uibModal', '$q'];
 
-    function UsersController(usersHttpService, progressBarService, $uibModal) {
+    function UsersController(usersHttpService, progressBarService, $uibModal, $q) {
         var self = this;
 
         self.addOne = function() {
@@ -29,6 +29,23 @@
             usersHttpService.getAll()
                 .then(function(response) {
                     self.users = response.data;
+
+                    var emailsPromises = self.users.map(function(user) {
+                        return usersHttpService.getEmails(user.id);
+                    });
+                    
+                    var phonesPromises = self.users.map(function(user) {
+                        return usersHttpService.getPhones(user.id);
+                    });
+
+                    return $q.all(emailsPromises.concat(phonesPromises))
+                })
+                .then(function(response) {
+                    for (var i = 0; i < self.users.length; i++) {
+                        self.users[i].emails = response[i].data;
+                        self.users[i].phones = response[i + self.users.length].data;
+                    }
+                   
                     progressBarService.complete();
                 });
         };
@@ -61,6 +78,54 @@
                     self.getAll();
                 });
         };
+
+        self.addEmail = function(usersId) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: 'addEmailModalComponent', 
+                resolve: {
+                    usersId: function() {
+                        return usersId;
+                    }
+                }
+            });
+
+            modalInstance.result
+                .then(function() {
+                    self.getAll();
+                });
+        };
+
+        self.addPhone = function(usersId) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: 'addPhoneModalComponent', 
+                resolve: {
+                    usersId: function() {
+                        return usersId;
+                    }
+                }
+            });
+
+            modalInstance.result
+                .then(function() {
+                    self.getAll();
+                });
+        };
+
+        self.deleteEmail = function(id) {
+            usersHttpService.deleteEmail(id)
+                .then(function() {
+                    self.getAll();
+                });
+        };
+
+        self.deletePhone = function(id) {
+            usersHttpService.deletePhone(id)
+                .then(function() {
+                    self.getAll();
+                });
+        }
 
         self.getAll();
     }

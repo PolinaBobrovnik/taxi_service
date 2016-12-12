@@ -37,8 +37,92 @@ router.get('/roles/', function(req, res, next) {
     });
 });
 
+router.get('/emails/:usersId', function(req, res, next) {
+    usersService.getEmails(req.params.usersId, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).send(rows);
+    })
+});
+
+router.post('/emails/', function(req, res, next) {
+    var validationErrors = usersValidator.validateEmail(req);
+
+    if (validationErrors) {
+        res.status(400).send(validationErrors);
+        return;
+    }
+
+    var emailObj = {
+        users_id: req.body.usersId,
+        email: req.body.email
+    };
+
+    usersService.addEmail(emailObj, function(err) {
+        if (err) {
+            return next(err);
+        }
+
+        res.sendStatus(200);
+    });
+});
+
+router.delete('/emails/:id', function(req, res) {
+    usersService.deleteEmail(req.params.id, function(err) {
+        if (err) {
+            return next(err);
+        }
+
+        res.sendStatus(200);
+    });
+});
+
+router.get('/phones/:usersId', function(req, res, next) {
+    usersService.getPhones(req.params.usersId, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).send(rows);
+    })
+});
+
+router.post('/phones/', function(req, res, next) {
+    var validationErrors = usersValidator.validatePhoneNumber(req);
+
+    if (validationErrors) {
+        res.status(400).send(validationErrors);
+        return;
+    }
+
+    var phoneObj = {
+        users_id: req.body.usersId,
+        number: req.body.phone
+    };
+
+    usersService.addPhone(phoneObj, function(err) {
+        if (err) {
+            return next(err);
+        }
+
+        res.sendStatus(200);
+    });
+});
+
+router.delete('/phones/:id', function(req, res) {
+    usersService.deletePhone(req.params.id, function(err) {
+       if (err) {
+           return next(err);
+       }
+
+        res.sendStatus(200);
+    });
+});
+
 router.post('/', function(req, res, next) {
-    var validationErrors = usersValidator.validate(req);
+    var validationErrors = usersValidator.validateUsersData(req);
 
     if (validationErrors) {
         res.status(400).send(validationErrors);
@@ -71,7 +155,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.put('/', function(req, res, next) {
-    var validationErrors = usersValidator.validate(req);
+    var validationErrors = usersValidator.validateUsersData(req);
 
     if (validationErrors) {
         res.status(400).send(validationErrors);

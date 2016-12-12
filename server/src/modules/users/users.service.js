@@ -19,6 +19,12 @@ module.exports = function() {
     var updateOne = 'UPDATE users SET ? WHERE id = ?';
     var selectRoles = 'SELECT * FROM roles';
     var selectPassword = 'SELECT password FROM users WHERE id = ?';
+    var addEmail = 'INSERT INTO emails SET ?';
+    var addPhone = 'INSERT INTO phones SET ?';
+    var selectEmails = 'SELECT id, email FROM emails WHERE users_id = ?';
+    var selectPhones = 'SELECT id, number FROM phones WHERE users_id = ?';
+    var deleteEmail = 'DELETE FROM emails WHERE id = ?';
+    var deletePhone = 'DELETE FROM phones WHERE id = ?';
 
     return {
         getAll: function(callback) {
@@ -41,6 +47,24 @@ module.exports = function() {
         },
         updateOne: function(updatedUser, id, callback) {
             connection.query(updateOne,[updatedUser, id], callback)
+        },
+        addEmail: function(email, callback) {
+            connection.query(addEmail,[email], callback);
+        },
+        addPhone: function(phone, callback) {
+            connection.query(addPhone,[phone], callback);
+        },
+        getEmails: function(usersId, callback) {
+            connection.query(selectEmails,[usersId], callback);
+        },
+        getPhones: function(usersId, callback) {
+            connection.query(selectPhones,[usersId], callback);
+        },
+        deleteEmail: function(id, callback) {
+            connection.query(deleteEmail, [id], callback);
+        },
+        deletePhone: function(id, callback) {
+            connection.query(deletePhone, [id], callback);
         }
     }
 };

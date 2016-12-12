@@ -24,6 +24,24 @@
             addOne: function(newUser) {
                 return baseHttpService.makeRequest('POST', usersUrl, newUser);
             },
+            addEmail: function(emailObj) {
+                return baseHttpService.makeRequest('POST', usersUrl + '/emails/', emailObj);
+            },
+            addPhone: function(phoneObj) {
+                return baseHttpService.makeRequest('POST', usersUrl + '/phones/', phoneObj);
+            },
+            getEmails: function(usersId) {
+                 return baseHttpService.makeRequest('GET', usersUrl + '/emails/' + usersId);
+            },
+            getPhones: function(usersId) {
+                 return baseHttpService.makeRequest('GET', usersUrl + '/phones/' + usersId);
+            },
+            deleteEmail: function(id) {
+                return baseHttpService.makeRequest('DELETE', usersUrl + '/emails/' + id);
+            },
+            deletePhone: function(id) {
+                 return baseHttpService.makeRequest('DELETE', usersUrl + '/phones/' + id);
+            }
         };
     }
 })();

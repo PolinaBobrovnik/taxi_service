@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Enter user's email</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+    <div uib-alert class="alert-danger" ng-show="$ctrl.errors" close="$ctrl.clearErrors()">
+        <p ng-repeat="error in $ctrl.errors">{{ error.msg }}</p>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="email">Enter email:</label>
+            <input ng-model="$ctrl.email" type="email" class="form-control" id="email" placeholder="lol@mail.com">
+        </div>
+
+        <div class="forms-buttons-container">
+            <button class="btn btn-primary" type="submit" ng-click="$ctrl.addEmail($event)">Add</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>    
+    </form>
+</div>
+<div class="modal-footer">
+</div>
