@@ -1,5 +1,5 @@
 (function() {
-angular.module('taxiServiceApp', ['ngProgress', 'ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']);
+    angular.module('taxiServiceApp', ['ngProgress', 'ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']);
 
     angular.module('taxiServiceApp').config(config);
 
@@ -19,8 +19,11 @@ angular.module('taxiServiceApp', ['ngProgress', 'ui.router', 'ngAnimate', 'ngSan
                 url: '/drivers', 
                 component: 'driversComponent' 
             },
-            
-
+            { 
+                name: 'clients', 
+                url: '/clients', 
+                component: 'clientsComponent' 
+            }
         ];
 
         states.forEach(function(state) {

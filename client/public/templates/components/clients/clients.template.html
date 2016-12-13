@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="client in $ctrl.clients">
+            <td>{{ client.firstname }}</td>
+            <td>{{ client.lastname }}</td>
+            <!--<td>
+                <ul>
+                    <li ng-repeat="car in driver.cars">
+                        {{ car.carsBrandsName + ' ' + car.carsModelsName + ' ' + car.manufactureYear }}
+                        <button ng-click="$ctrl.deleteCar(car.id)">Delete</button>
+                    </li>
+                </ul>
+            </td>-->
+            <td>
+                <button ng-click="$ctrl.leaveCommentr(client.id)">Leave comment</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
