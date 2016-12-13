@@ -3,6 +3,7 @@
         <tr>
             <th>Organization</th>
             <th>Description</th>
+            <th>Drivers</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -11,7 +12,16 @@
             <td>{{ organization.organizationsName }}</td>
             <td>{{ organization.description }}</td>
             <td>
+                <ul>
+                    <li ng-repeat="driver in organization.drivers">
+                        {{ driver.firstname + ' ' + driver.lastname }}
+                        <button ng-click="$ctrl.deleteDriver(driver.id)">Delete</button>
+                    </li>
+                </ul>
+            </td>
+            <td>
                 <button ng-click="$ctrl.updateDescription(organization.description, organization.id)">Update</button>
+                <button ng-click="$ctrl.addDriver(organization.id)">Add driver</button>
             </td>
         </tr>
     </tbody>

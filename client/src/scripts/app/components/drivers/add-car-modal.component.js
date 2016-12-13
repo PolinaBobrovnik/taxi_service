@@ -8,12 +8,12 @@
                 resolve: '<'
             },
             templateUrl: '../templates/components/drivers/add-car-modal.template.html',
-            controller: AddCarModalComponent
+            controller: AddCarModalController
         });
     
-    AddCarModalComponent.$inject = ['driversHttpService'];
+    AddCarModalController.$inject = ['driversHttpService'];
 
-    function AddCarModalComponent(driversHttpService) {
+    function AddCarModalController(driversHttpService) {
         var self = this;
         self.car = {};
 

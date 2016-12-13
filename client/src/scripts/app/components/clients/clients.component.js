@@ -17,7 +17,7 @@
             clientsHttpService.getAll()
                 .then(function(response) {
                     self.clients = response.data;
-                    
+
                     progressBarService.complete();
                 });
         };
@@ -26,23 +26,7 @@
 
         };
 
-        // self.addCar = function(driversId) {
-        //     var modalInstance = $uibModal.open({
-        //         animation: true,
-        //         component: 'addCarModalComponent',
-        //         resolve: {
-        //             driversId: function() {
-        //                 return driversId;
-        //             }
-        //         }
-        //     });
-
-        //     modalInstance.result
-        //         .then(function() {
-        //             self.getAll();
-        //         });
-        // };
-
+       
         self.getAll();
     }
 })();

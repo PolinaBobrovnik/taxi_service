@@ -12,9 +12,21 @@
             getAll: function() {
                 return baseHttpService.makeRequest('GET', organizationsUrl);
             },
-            updateDescription: function(descriptionObj) {
-                return baseHttpService.makeRequest('PUT', organizationsUrl, descriptionObj);
-            }  
+            updateDescription: function(bodyObj) {
+                return baseHttpService.makeRequest('PUT', organizationsUrl, bodyObj);
+            },
+            getDriversByOrganizationsId: function(organizationsId) {
+                return baseHttpService.makeRequest('GET', organizationsUrl + '/drivers/' + organizationsId);
+            },
+            addDriver: function(bodyObj) {
+                return baseHttpService.makeRequest('PUT', organizationsUrl + '/drivers/', bodyObj);
+            },
+            getDriversWithoutOrganization: function() {
+                return baseHttpService.makeRequest('GET', organizationsUrl + '/drivers/without-organization/');
+            },
+            deleteDriver: function(driversId) {
+                return baseHttpService.makeRequest('DELETE', organizationsUrl + '/drivers/' + driversId);
+            }
         };
     }
 })();
