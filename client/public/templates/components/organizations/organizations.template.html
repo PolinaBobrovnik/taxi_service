@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Organization</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="organization in $ctrl.organizations">
+            <td>{{ organization.organizationsName }}</td>
+            <td>{{ organization.description }}</td>
+            <td>
+                <button ng-click="$ctrl.updateDescription(organization.description, organization.id)">Update</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

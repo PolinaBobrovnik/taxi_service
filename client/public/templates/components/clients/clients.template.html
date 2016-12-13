@@ -10,16 +10,8 @@
         <tr ng-repeat="client in $ctrl.clients">
             <td>{{ client.firstname }}</td>
             <td>{{ client.lastname }}</td>
-            <!--<td>
-                <ul>
-                    <li ng-repeat="car in driver.cars">
-                        {{ car.carsBrandsName + ' ' + car.carsModelsName + ' ' + car.manufactureYear }}
-                        <button ng-click="$ctrl.deleteCar(car.id)">Delete</button>
-                    </li>
-                </ul>
-            </td>-->
             <td>
-                <button ng-click="$ctrl.leaveCommentr(client.id)">Leave comment</button>
+                <button ng-click="$ctrl.leaveComment(client.id)">Leave comment</button>
             </td>
         </tr>
     </tbody>

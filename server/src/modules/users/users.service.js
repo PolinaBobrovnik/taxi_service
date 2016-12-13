@@ -86,17 +86,17 @@ module.exports = function() {
         deletePhone: function(id, callback) {
             connection.query(deletePhone, [id], callback);
         },
-        addDriver: function(usersIdObj, callback) {
-            connection.query(addDriver, [usersIdObj], callback);
+        addDriver: function(entityObj, callback) {
+            connection.query(addDriver, [entityObj], callback);
         },
-        addClient: function(usersIdObj, callback) {
-            connection.query(addClient, [usersIdObj], callback);
+        addClient: function(entityObj, callback) {
+            connection.query(addClient, [entityObj], callback);
         },
-        addOrganization: function(usersIdObj, callback) {
-            connection.query(addOrganization, [usersIdObj], callback);
+        addOrganization: function(entityObj, callback) {
+            connection.query(addOrganization, [entityObj], callback);
         },
-        addDispatcher: function(usersIdObj, callback) {
-            connection.query(addDispatcher, [usersIdObj], callback);
+        addDispatcher: function(entityObj, callback) {
+            connection.query(addDispatcher, [entityObj], callback);
         }
     };
 };

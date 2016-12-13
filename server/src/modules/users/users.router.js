@@ -161,22 +161,23 @@ router.post('/', function(req, res, next) {
                     res.sendStatus(200);
                 }
 
-                var usersIdObj = {
+                var entityObj = {
                     users_id: rows[0].id
                 };
 
                 switch (rows[0].role) {
                     case 'driver':
-                        usersService.addDriver(usersIdObj, callback);
+                        usersService.addDriver(entityObj, callback);
                         break;
                     case 'client':
-                        usersService.addClient(usersIdObj, callback);
+                        usersService.addClient(entityObj, callback);
                         break;
                     case 'organization':
-                        usersService.addOrganization(usersIdObj, callback);
+                        entityObj.description = '';
+                        usersService.addOrganization(entityObj, callback);
                         break;
                     case 'dispatcher':
-                        usersService.addDispatcher(usersIdObj, callback);
+                        usersService.addDispatcher(entityObj, callback);
                         break;
                     default:
                         throw new Error('There is not compatible role!');

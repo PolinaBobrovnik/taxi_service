@@ -23,6 +23,11 @@
                 name: 'clients', 
                 url: '/clients', 
                 component: 'clientsComponent' 
+            },
+            { 
+                name: 'organizations', 
+                url: '/organizations', 
+                component: 'organizationsComponent' 
             }
         ];
 
