@@ -13,7 +13,7 @@
                 return baseHttpService.makeRequest('GET', usersUrl);
             },
             getRoles: function() {
-                return baseHttpService.makeRequest('GET', usersUrl + '/roles/');
+                return baseHttpService.makeRequest('GET', usersUrl + 'roles/');
             },
             deleteOneById: function(id) {
                 return baseHttpService.makeRequest('DELETE', usersUrl + id);
@@ -25,22 +25,22 @@
                 return baseHttpService.makeRequest('POST', usersUrl, newUser);
             },
             addEmail: function(emailObj) {
-                return baseHttpService.makeRequest('POST', usersUrl + '/emails/', emailObj);
+                return baseHttpService.makeRequest('POST', usersUrl + 'emails/', emailObj);
             },
             addPhone: function(phoneObj) {
-                return baseHttpService.makeRequest('POST', usersUrl + '/phones/', phoneObj);
+                return baseHttpService.makeRequest('POST', usersUrl + 'phones/', phoneObj);
             },
             getEmails: function(usersId) {
-                 return baseHttpService.makeRequest('GET', usersUrl + '/emails/' + usersId);
+                 return baseHttpService.makeRequest('GET', usersUrl + 'emails/' + usersId);
             },
             getPhones: function(usersId) {
-                 return baseHttpService.makeRequest('GET', usersUrl + '/phones/' + usersId);
+                 return baseHttpService.makeRequest('GET', usersUrl + 'phones/' + usersId);
             },
             deleteEmail: function(id) {
-                return baseHttpService.makeRequest('DELETE', usersUrl + '/emails/' + id);
+                return baseHttpService.makeRequest('DELETE', usersUrl + 'emails/' + id);
             },
             deletePhone: function(id) {
-                 return baseHttpService.makeRequest('DELETE', usersUrl + '/phones/' + id);
+                 return baseHttpService.makeRequest('DELETE', usersUrl + 'phones/' + id);
             }
         };
     }

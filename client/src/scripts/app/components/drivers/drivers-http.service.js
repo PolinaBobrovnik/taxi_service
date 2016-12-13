@@ -13,19 +13,19 @@
                 return baseHttpService.makeRequest('GET', driversUrl);
             },
             addCar: function(car) {
-                return baseHttpService.makeRequest('POST', driversUrl + '/cars/', car);
+                return baseHttpService.makeRequest('POST', driversUrl + 'cars/', car);
             },
             getCarsBrands: function() {
-                return baseHttpService.makeRequest('GET', driversUrl + '/cars/brands/');
+                return baseHttpService.makeRequest('GET', driversUrl + 'cars/brands/');
             },
             getCarsModels: function(brandsId) {
-                return baseHttpService.makeRequest('GET', driversUrl + '/cars/models/' + brandsId);
+                return baseHttpService.makeRequest('GET', driversUrl + 'cars/models/' + brandsId);
             },
             getCarsByDriversId: function(driversId) {
-                return baseHttpService.makeRequest('GET', driversUrl + '/cars/' + driversId);
+                return baseHttpService.makeRequest('GET', driversUrl + 'cars/' + driversId);
             },
             deleteCar: function(carsId) {
-                return baseHttpService.makeRequest('DELETE', driversUrl + '/cars/' + carsId);
+                return baseHttpService.makeRequest('DELETE', driversUrl + 'cars/' + carsId);
             }
         };
     }

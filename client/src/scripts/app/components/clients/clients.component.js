@@ -22,8 +22,21 @@
                 });
         };
 
-        self.leaveComment = function(clientId) {
+        self.leaveComment = function(clientsId) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: 'addCommentModalComponent',
+                resolve: {
+                    clientsId: function() {
+                        return clientsId;
+                    }
+                }
+            });
 
+            modalInstance.result
+                .then(function() {
+                    self.getAll();
+                });
         };
 
        

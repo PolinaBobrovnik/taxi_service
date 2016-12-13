@@ -15,6 +15,26 @@ module.exports = function() {
 
     var selectRatings = 'SELECT id, rating FROM ratings';
 
+    var selectOrganizations = `
+        SELECT
+            o.id,
+            u.name AS organizationsName
+        FROM organizations o
+        JOIN users u
+            ON u.id = o.users_id
+    `;
+
+    var selectDriversByOrganizationsId = `
+        SELECT
+            d.id,
+            u.name AS firstname,
+            u.last_name AS lastname
+        FROM drivers d
+        JOIN users u
+            ON u.id = d.users_id
+        WHERE d.organizations_id = ?
+    `;
+
     return {
         getAll: function(callback) {
             connection.query(selectAll, callback);
@@ -24,6 +44,12 @@ module.exports = function() {
         },
         getRatings: function(callback) {
             connection.query(selectRatings, callback);
+        },
+        getOrganizations: function(callback) {
+            connection.query(selectOrganizations, callback);
+        },
+        getDriversByOrganizationsId: function(organizationsId, callback) {
+            connection.query(selectDriversByOrganizationsId, [organizationsId], callback);
         }
     };
 };

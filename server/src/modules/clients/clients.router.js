@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/ratings/', function(req, res) {
+router.get('/ratings/', function(req, res, next) {
     clientsService.getRatings(function(err, rows) {
         if (err) {
             return next(err);
@@ -22,7 +22,27 @@ router.get('/ratings/', function(req, res) {
     });
 });
 
-router.post('/comment/', function (req, res) {
+router.get('/organizations/', function(req, res, next) {
+    clientsService.getOrganizations(function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).send(rows);
+    });
+});
+
+router.get('/drivers/:organizationsId', function(req, res, next) {
+    clientsService.getDriversByOrganizationsId(req.params.organizationsId, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).send(rows);
+    });
+});
+
+router.post('/comment/', function (req, res, next) {
     var validationErrors = clientsValidator.validateComment(req);
 
     if (validationErrors) {

@@ -11,7 +11,19 @@
         return {
             getAll: function() {
                 return baseHttpService.makeRequest('GET', clientsUrl);
-            },   
+            },
+            leaveComment: function(bodyObj) {
+                return baseHttpService.makeRequest('POST', clientsUrl + 'comment/', bodyObj);
+            },
+            getRatings: function() {
+                return baseHttpService.makeRequest('GET', clientsUrl + 'ratings/');
+            },
+            getOrganizations: function() {
+                 return baseHttpService.makeRequest('GET', clientsUrl + 'organizations/');
+            },
+            getDriversByOrganizationsId: function(organizationsId) {
+                return baseHttpService.makeRequest('GET', clientsUrl + 'drivers/' + organizationsId);
+            }
         };
     }
 })();
