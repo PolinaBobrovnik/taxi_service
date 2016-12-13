@@ -22,6 +22,7 @@ router.get('/cars/brands/', function(req, res, next) {
     });
 });
 
+
 router.get('/cars/models/:brandsId', function(req, res, next) {
     driversService.getCarsModels(req.params.brandsId, function(err, rows) {
         if (err) {
@@ -29,6 +30,17 @@ router.get('/cars/models/:brandsId', function(req, res, next) {
         }
 
         res.status(200).send(rows);
+    });
+});
+
+router.get('/cars/:driversId', function(req, res, next) {
+    driversService.getCarsByDriversId(req.params.driversId, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).send(rows);
+
     });
 });
 
@@ -65,7 +77,7 @@ router.delete('/cars/:id', function(req, res, next) {
         }
 
         res.sendStatus(200);
-    })
+    });
 });
 
 module.exports = router;

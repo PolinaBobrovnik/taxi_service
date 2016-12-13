@@ -20,6 +20,12 @@
             },
             getCarsModels: function(brandsId) {
                 return baseHttpService.makeRequest('GET', driversUrl + '/cars/models/' + brandsId);
+            },
+            getCarsByDriversId: function(driversId) {
+                return baseHttpService.makeRequest('GET', driversUrl + '/cars/' + driversId);
+            },
+            deleteCar: function(carsId) {
+                return baseHttpService.makeRequest('DELETE', driversUrl + '/cars/' + carsId);
             }
         };
     }

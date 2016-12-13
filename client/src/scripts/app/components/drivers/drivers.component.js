@@ -17,26 +17,20 @@
             driversHttpService.getAll()
                 .then(function(response) {
                     self.drivers = response.data;
-                    progressBarService.complete();
-
-                    // var emailsPromises = self.users.map(function(user) {
-                    //     return usersHttpService.getEmails(user.id);
-                    // });
                     
-                    // var phonesPromises = self.users.map(function(user) {
-                    //     return usersHttpService.getPhones(user.id);
-                    // });
+                    var carsPromises = self.drivers.map(function(driver) {
+                        return driversHttpService.getCarsByDriversId(driver.id);
+                    });
 
-                    // return $q.all(emailsPromises.concat(phonesPromises))
+                    return $q.all(carsPromises)
+                })
+                .then(function(response) {
+                    for (var i = 0; i < self.drivers.length; i++) {
+                        self.drivers[i].cars = response[i].data;
+                    }
+
+                    progressBarService.complete();
                 });
-                // .then(function(response) {
-                //     for (var i = 0; i < self.users.length; i++) {
-                //         self.users[i].emails = response[i].data;
-                //         self.users[i].phones = response[i + self.users.length].data;
-                //     }
-                   
-                //     progressBarService.complete();
-                // });
         };
 
         self.addCar = function(driversId) {
@@ -51,6 +45,13 @@
             });
 
             modalInstance.result
+                .then(function() {
+                    self.getAll();
+                });
+        };
+
+        self.deleteCar = function(carsId) {
+            driversHttpService.deleteCar(carsId)
                 .then(function() {
                     self.getAll();
                 });

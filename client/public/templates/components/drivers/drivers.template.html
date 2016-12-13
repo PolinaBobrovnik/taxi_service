@@ -3,6 +3,7 @@
         <tr>
             <th>First name</th>
             <th>Last name</th>
+            <th>Cars</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -10,7 +11,14 @@
         <tr ng-repeat="driver in $ctrl.drivers">
             <td>{{ driver.firstname }}</td>
             <td>{{ driver.lastname }}</td>
-
+            <td>
+                <ul>
+                    <li ng-repeat="car in driver.cars">
+                        {{ car.carsBrandsName + ' ' + car.carsModelsName + ' ' + car.manufactureYear }}
+                        <button ng-click="$ctrl.deleteCar(car.id)">Delete</button>
+                    </li>
+                </ul>
+            </td>
             <td>
                 <button ng-click="$ctrl.addCar(driver.id)">Add car</button>
             </td>
