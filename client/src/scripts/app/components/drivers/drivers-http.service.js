@@ -26,6 +26,9 @@
             },
             deleteCar: function(carsId) {
                 return baseHttpService.makeRequest('DELETE', driversUrl + 'cars/' + carsId);
+            },
+            addRide: function(ride) {
+                return baseHttpService.makeRequest('POST', driversUrl + 'rides/', ride);
             }
         };
     }

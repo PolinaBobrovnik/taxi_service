@@ -12,6 +12,16 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/statuses/', function(req, res, next) {
+    driversService.getStatuses(function (err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).send(rows);
+    });
+});
+
 router.get('/cars/brands/', function(req, res, next) {
     driversService.getCarsBrands(function (err, rows) {
         if (err) {
@@ -72,6 +82,34 @@ router.post('/cars/', function(req, res, next) {
 
 router.delete('/cars/:id', function(req, res, next) {
     driversService.deleteCar(req.params.id, function(err) {
+        if (err) {
+            return next(err);
+        }
+
+        res.sendStatus(200);
+    });
+});
+
+router.post('/rides/', function(req, res, next) {
+    var validationErrors = driversValidator.validateRidesData(req);
+
+    if (validationErrors) {
+        res.status(400).send(validationErrors);
+        return;
+    }
+
+    var ride = {
+        cars_id: req.body.carsId,
+        drivers_id: req.body.driversId,
+        statuses_id: 1,
+        routes_id: req.body.routesId,
+        price: req.body.price,
+        available_seats: req.body.availableSeats,
+        departure_time: Date.parse(req.body.departureTime),
+        arrival_time: Date.parse(req.body.arrivalTime)
+    };
+
+    driversService.insertRide(ride, function(err) {
         if (err) {
             return next(err);
         }

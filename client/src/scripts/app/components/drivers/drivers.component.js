@@ -33,6 +33,23 @@
                 });
         };
 
+        self.addRide = function(driversId) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: 'addRideModalComponent',
+                resolve: {
+                    driversId: function() {
+                        return driversId;
+                    }
+                }
+            });
+
+            modalInstance.result
+                .then(function() {
+                    self.getAll();
+                });
+        };
+
         self.addCar = function(driversId) {
             var modalInstance = $uibModal.open({
                 animation: true,

@@ -41,6 +41,10 @@ module.exports = function() {
         WHERE c.drivers_id = ?
     `;
 
+    var insertRide = 'INSERT INTO rides SET ?';
+    
+    var selectStatuses = 'SELECT *  FROM statuses';
+
     return {
         getAll: function(callback) {
             connection.query(selectAll, callback);
@@ -59,6 +63,12 @@ module.exports = function() {
         },
         getCarsByDriversId: function(driversId, callback) {
             connection.query(selectCarsByDriversId, [driversId], callback);
+        },
+        insertRide: function(ride, callback) {
+            connection.query(insertRide, [ride], callback);
+        },
+        getStatuses: function(callback) {
+            connection.query(selectStatuses, callback);
         }
     }
 };
