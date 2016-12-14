@@ -2,9 +2,8 @@ use taxi_service;
 
 insert into roles (role) values ('client'),
 								('driver'),
-                                ('organization'),
-                                ('dispatcher');
-                                
+                                ('organization');
+                              
 insert into cars_brands (name) values ('Mercedes'),
 									  ('Volkswagen');
 
@@ -27,3 +26,9 @@ insert into statuses (status) values ('registration is opended'),
 									 ('registration is closed'),
 									 ('on the road'),
                                      ('ride is finished');
+
+insert into points (name, address) values ('Grorodecheno', ' Grorodechno village, Oktyabrskaya street'),
+										  ('Minsk', 'L. Bedy street 4'), 
+										  ('Novogrudok', 'Lenina square 5'), 
+										  ('Grodno', 'Bogdanovicha street 5'); 
+

@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Enter new route or update</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+    <div uib-alert class="alert-danger" ng-show="$ctrl.errors" close="$ctrl.clearErrors()">
+        <p ng-repeat="error in $ctrl.errors">{{ error.msg }}</p>
+    </div>
+
+    <form>        
+        <div class="form-group">
+            <label for="sources">Select source:</label>
+            <select id="sources" class="forms-select" ng-model="$ctrl.route.sourcesId">
+                <option ng-selected="{{point.id == 2}}" value="{{ point.id }}" ng-repeat="point in $ctrl.points">
+                    {{ point.name }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="destinations">Select destination:</label>
+            <select id="destinations" class="forms-select" ng-model="$ctrl.route.destinationsId">
+                <option value="{{ point.id }}" ng-repeat="point in $ctrl.points">
+                    {{ point.name }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea ng-model="$ctrl.route.description" id="description" class="form-control"></textarea>
+        </div>
+
+        <div class="forms-buttons-container">
+            <button class="btn btn-primary" type="submit" ng-click="$ctrl.addOrUpdateRoute($event)">Add</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>    
+    </form>
+</div>
+<div class="modal-footer">
+</div>

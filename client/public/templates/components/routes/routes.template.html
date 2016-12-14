@@ -1,0 +1,44 @@
+<button ng-click="$ctrl.addRoute()">Add route</button>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="route in $ctrl.routes">
+            <td>
+                <div>
+                    <p>Name:</p>
+                    <p>{{ route.sourcesName }}</p>
+                </div>
+
+                <div>
+                    <p>Address:</p>
+                    <p>{{ route.sourcesAddress }}</p>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <p>Name:</p>
+                    <p>{{ route.destinationsName }}</p>
+                </div>
+
+                <div>
+                    <p>Address:</p>
+                    <p>{{ route.destinationsAddress }}</p>
+                </div>
+            </td>
+            <td>
+                {{ route.description }}
+            </td>
+            <td>
+                <button ng-click="$ctrl.updateRoute(route.id)">Update</button>
+                <button ng-click="$ctrl.deleteRoute(route.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

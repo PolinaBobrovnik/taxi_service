@@ -176,9 +176,6 @@ router.post('/', function(req, res, next) {
                         entityObj.description = '';
                         usersService.addOrganization(entityObj, callback);
                         break;
-                    case 'dispatcher':
-                        usersService.addDispatcher(entityObj, callback);
-                        break;
                     default:
                         throw new Error('There is not compatible role!');
                 }

@@ -28,6 +28,11 @@
                 name: 'organizations', 
                 url: '/organizations', 
                 component: 'organizationsComponent' 
+            },
+            { 
+                name: 'routes', 
+                url: '/routes', 
+                component: 'routesComponent' 
             }
         ];
 
