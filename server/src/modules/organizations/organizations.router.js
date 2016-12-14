@@ -12,6 +12,26 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/comments/:organizationsId', function(req, res, next) {
+    organizationsService.getCommentsByOrganizationsId(req.params.organizationsId, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).send(rows);
+    });
+});
+
+router.delete('/comments/:commentsId', function(req, res, next) {
+    organizationsService.deleteComment(req.params.commentsId, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.sendStatus(200);
+    });
+});
+
 router.put('/drivers/', function(req, res, next) {
     var validationErrors = organizationsValidator.validateNewDriver(req);
 

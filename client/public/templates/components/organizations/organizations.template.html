@@ -4,6 +4,7 @@
             <th>Organization</th>
             <th>Description</th>
             <th>Drivers</th>
+            <th>Comments</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -16,6 +17,15 @@
                     <li ng-repeat="driver in organization.drivers">
                         {{ driver.firstname + ' ' + driver.lastname }}
                         <button ng-click="$ctrl.deleteDriver(driver.id)">Delete</button>
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li ng-repeat="comment in organization.comments">
+                        {{ comment.clientsUsername + ' Rating: ' + comment.rating }}
+                        <button ng-click="$ctrl.deleteComment(comment.id)">Delete</button>
+                        <button ng-click="$ctrl.showCommentsDetails(comment)">Details</button>
                     </li>
                 </ul>
             </td>

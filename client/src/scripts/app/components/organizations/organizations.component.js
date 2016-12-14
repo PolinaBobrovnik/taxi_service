@@ -22,16 +22,40 @@
                         return organizationsHttpService.getDriversByOrganizationsId(organization.id);
                     });
                     
-                    return $q.all(driversPromises);
+                    var commentsPromises = self.organizations.map(function(organization) {
+                        return organizationsHttpService.getCommentsByOrganizationsId(organization.id);
+                    });
+
+                    return $q.all(driversPromises.concat(commentsPromises));
                    
                 })
                 .then(function(response) {
                     for(var i = 0; i < self.organizations.length; i++) {
                         self.organizations[i].drivers = response[i].data;
+                        self.organizations[i].comments = response[i + self.organizations.length].data
                     }
 
                     progressBarService.complete();
                 });
+        };
+
+        self.deleteComment = function(commentsId) {
+            organizationsHttpService.deleteComment(commentsId)
+                .then(function() {
+                    self.getAll();
+                });
+        };
+
+        self.showCommentsDetails = function(comment) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: 'commentsDetailsModalComponent',
+                resolve: {
+                    comment: function() {
+                        return comment;
+                    }
+                }
+            });
         };
 
         self.addDriver = function(organizationsId) {

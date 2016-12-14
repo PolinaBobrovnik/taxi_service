@@ -26,6 +26,12 @@
             },
             deleteDriver: function(driversId) {
                 return baseHttpService.makeRequest('DELETE', organizationsUrl + 'drivers/' + driversId);
+            },
+            getCommentsByOrganizationsId: function(organizationsId) {
+                return baseHttpService.makeRequest('GET', organizationsUrl + 'comments/' + organizationsId);
+            },
+            deleteComment: function(commentsId) {
+                return baseHttpService.makeRequest('DELETE', organizationsUrl + 'comments/' + commentsId);
             }
         };
     }

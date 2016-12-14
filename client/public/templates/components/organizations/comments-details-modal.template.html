@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Details</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+    <div class="comments-detail">
+        <span class="title">Clients username: </span>
+        <span>{{ $ctrl.comment.clientsUsername }}</span>
+    </div>
+
+    <div class="comments-detail">
+        <span class="title">Clients username: </span>
+        <span>{{ $ctrl.comment.clientsUsername }}</span>
+    </div>
+        
+    <div class="comments-detail">
+        <span class="title">Rating: </span>
+        <span>{{ $ctrl.comment.rating }}</span>
+    </div>
+
+    <div class="comments-detail">
+        <span class="title">Driver: </span>
+        <span>{{ $ctrl.comment.driversFirstname + ' ' +  $ctrl.comment.driversLastname }}</span>
+    </div>
+
+    <div class="comments-detail">
+        <p class="title">Comment:</p>
+        <span>{{$ctrl.comment.comment}}</span> 
+    </div>  
+
+    <div class="forms-buttons-container">
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>    
+</div>
+<div class="modal-footer">
+</div>
