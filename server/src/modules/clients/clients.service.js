@@ -35,6 +35,38 @@ module.exports = function() {
         WHERE d.organizations_id = ?
     `;
 
+    var insertTicket = 'INSERT INTO tickets SET ?';
+
+    var selectRidesAvailableSeats = 'SELECT available_seats AS availableSeats FROM rides WHERE id = ?';
+
+    var updateRide = 'UPDATE rides SET ? WHERE id = ?';
+
+    var deleteTicket = 'DELETE FROM tickets WHERE id = ?';
+
+    var selectTicketsByClientsId = `
+        SELECT
+            t.id,
+            t.rides_id AS ridesId,
+            ps.name AS sourcesName,
+            pd.name AS destinationsName,
+            pt.type AS paymentType,
+            rd.departure_time AS departureTime
+        FROM tickets t
+        JOIN payment_types pt
+           ON  pt.id = t.payment_types_id
+        JOIN rides rd
+            ON rd.id = t.rides_id
+        JOIN routes r
+            ON r.id = rd.routes_id
+        JOIN points ps
+            ON ps.id = r.sources_id
+        JOIN points pd
+            ON pd.id = r.destinations_id
+        WHERE t.clients_id = ?
+    `;
+
+    var selectPaymentTypes = 'SELECT * FROM payment_types';
+
     return {
         getAll: function(callback) {
             connection.query(selectAll, callback);
@@ -50,6 +82,24 @@ module.exports = function() {
         },
         getDriversByOrganizationsId: function(organizationsId, callback) {
             connection.query(selectDriversByOrganizationsId, [organizationsId], callback);
+        },
+        bookTicket: function(entityObj, callback) {
+            connection.query(insertTicket, [entityObj], callback);
+        },
+        getAvailableSeats: function(ridesId, callback) {
+            connection.query(selectRidesAvailableSeats, [ridesId], callback);
+        },
+        updateRide: function(entityObj, ridesId, callback) {
+            connection.query(updateRide, [entityObj, ridesId], callback);
+        },
+        deleteTicket: function(ticketsId, callback) {
+            connection.query(deleteTicket, [ticketsId], callback);
+        },
+        getTicketsByClientsId: function(clientsId, callback) {
+            connection.query(selectTicketsByClientsId, [clientsId], callback);
+        },
+        getPaymentTypes: function(callback) {
+            connection.query(selectPaymentTypes, callback);
         }
     };
 };

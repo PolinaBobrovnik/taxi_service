@@ -23,6 +23,18 @@
             },
             getDriversByOrganizationsId: function(organizationsId) {
                 return baseHttpService.makeRequest('GET', clientsUrl + 'drivers/' + organizationsId);
+            },
+            bookTicket: function(bodyObj) {
+                return baseHttpService.makeRequest('POST', clientsUrl + 'ticket/', bodyObj);
+            },
+            getTicketsByClientsId: function(clientsId) {
+                return baseHttpService.makeRequest('GET', clientsUrl + 'ticket/' + clientsId);
+            },
+            deleteTicket: function(clientsId, ridesId) {
+                return baseHttpService.makeRequest('DELETE', clientsUrl + 'ticket/' + clientsId + '/' + ridesId);
+            },
+            getPaymentTypes: function() {
+                return baseHttpService.makeRequest('GET', clientsUrl + 'ticket/payment-types/');
             }
         };
     }

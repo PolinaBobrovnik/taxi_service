@@ -12,16 +12,6 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/statuses/', function(req, res, next) {
-    driversService.getStatuses(function (err, rows) {
-        if (err) {
-            return next(err);
-        }
-
-        res.status(200).send(rows);
-    });
-});
-
 router.get('/cars/brands/', function(req, res, next) {
     driversService.getCarsBrands(function (err, rows) {
         if (err) {
@@ -117,5 +107,88 @@ router.post('/rides/', function(req, res, next) {
         res.sendStatus(200);
     });
 });
+
+router.get('/rides/available/', function(req, res, next) {
+    driversService.getAvailableRides(function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        if (rows.length !== 0) {
+            res.status(200).send(rows.map(function(row) {
+                row.arrivalTime = new Date(row.arrivalTime);
+                row.departureTime = new Date(row.departureTime);
+
+                return row;
+            }));
+        } else {
+            res.status(200).send([]);
+        }
+
+
+    });
+});
+
+router.get('/rides/:driversId', function(req, res, next) {
+    driversService.getRidesByDriversId(req.params.driversId, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        if (rows.length !== 0) {
+            res.status(200).send(rows.map(function(row) {
+                row.arrivalTime = new Date(row.arrivalTime);
+                row.departureTime = new Date(row.departureTime);
+
+                return row;
+            }));
+        } else {
+            res.status(200).send([]);
+        }
+    });
+});
+
+router.delete('/rides/:id', function(req, res, next) {
+    driversService.deleteRide(req.params.id, function(err) {
+        if (err) {
+            return next(err);
+        }
+
+        res.sendStatus(200);
+    });
+});
+
+router.put('/rides/on-the-road/', function(req, res, next) {
+    driversService.getRidesStatus(req.body.ridesId, function(err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        if (rows[0].statusesId !== 4) {
+            driversService.updateRideAsOnTheRoad(req.body.ridesId, function (err) {
+                if (err) {
+                    return next(err);
+                }
+
+                res.sendStatus(200);
+            });
+        } else {
+            res.sendStatus(500);
+        }
+
+    });
+});
+
+router.put('/rides/finished/', function(req, res, next) {
+    driversService.updateRideAsFinished(req.body.ridesId, function (err) {
+        if (err) {
+            return next(err);
+        }
+
+        res.sendStatus(200);
+    });
+});
+
+
 
 module.exports = router;

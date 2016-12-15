@@ -42,8 +42,40 @@ module.exports = function() {
     `;
 
     var insertRide = 'INSERT INTO rides SET ?';
-    
-    var selectStatuses = 'SELECT *  FROM statuses';
+
+    var selectRides = `
+        SELECT
+            rd.id,
+            ps.name AS sourcesName,
+            pd.name AS destinationsName,
+            rd.price,
+            rd.arrival_time AS arrivalTime,
+            rd.departure_time AS departureTime,
+            rd.available_seats AS availableSeats,
+            s.status
+        FROM rides rd
+        JOIN routes r
+            ON r.id = rd.routes_id
+        JOIN points ps
+            ON ps.id = r.sources_id
+        JOIN points pd
+            ON pd.id = r.destinations_id
+        JOIN statuses s
+            ON s.id = rd.statuses_id
+        
+    `;
+
+    var selectRidesByDriversId = selectRides + 'WHERE rd.drivers_id = ?';
+
+    var selectAvailableRides = selectRides + 'WHERE rd.statuses_id = 1';
+
+    var deleteRide = 'DELETE FROM rides WHERE id = ?';
+
+    var updateRideAsOnTheRoad = 'UPDATE rides SET statuses_id = 3 WHERE id = ?';
+
+    var updateRideAsFinished = 'UPDATE rides SET statuses_id = 4 WHERE id = ?';
+
+    var getRidesStatus = 'SELECT statuses_id AS statusesId FROM rides WHERE id = ?';
 
     return {
         getAll: function(callback) {
@@ -67,8 +99,24 @@ module.exports = function() {
         insertRide: function(ride, callback) {
             connection.query(insertRide, [ride], callback);
         },
-        getStatuses: function(callback) {
-            connection.query(selectStatuses, callback);
+        getRidesByDriversId: function(driversId, callback) {
+            connection.query(selectRidesByDriversId,[driversId], callback);
+        },
+        getAvailableRides: function(callback) {
+            connection.query(selectAvailableRides, callback);
+        },
+        deleteRide: function(ridesId, callback) {
+            connection.query(deleteRide, [ridesId], callback);
+        },
+        getRidesStatus: function(ridesId, callback) {
+            connection.query(getRidesStatus, [ridesId], callback);
+        },
+        updateRideAsOnTheRoad: function(ridesId, callback) {
+            connection.query(updateRideAsOnTheRoad, [ridesId], callback);
+        },
+        updateRideAsFinished: function(ridesId, callback) {
+            connection.query(updateRideAsFinished, [ridesId], callback);
         }
+
     }
 };

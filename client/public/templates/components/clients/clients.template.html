@@ -3,6 +3,7 @@
         <tr>
             <th>First name</th>
             <th>Last name</th>
+            <th>Tickets</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -11,7 +12,17 @@
             <td>{{ client.firstname }}</td>
             <td>{{ client.lastname }}</td>
             <td>
+                <ul>
+                    <li ng-repeat="ticket in client.tickets">
+                        {{ ticket.sourcesName + '-' + ticket.destinationsName + ' Departure: ' + ticket.departureTime }}
+                        <button ng-click="$ctrl.deleteTicket(ticket.id, ticket.ridesId)">Delete</button>
+                    </li>
+                </ul>
+            </td>
+            
+            <td>
                 <button ng-click="$ctrl.leaveComment(client.id)">Leave comment</button>
+                <button ng-click="$ctrl.bookTicket(client.id)">Book ticket</button>
             </td>
         </tr>
     </tbody>

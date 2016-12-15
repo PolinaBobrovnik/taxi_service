@@ -2,15 +2,24 @@
     <thead>
         <tr>
             <th>First name</th>
-            <th>Last name</th>
             <th>Cars</th>
+            <th>Rides</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="driver in $ctrl.drivers">
-            <td>{{ driver.firstname }}</td>
-            <td>{{ driver.lastname }}</td>
+            <td>{{ driver.firstname + ' ' + driver.lastname }}</td>
+            <td>
+               <ul>
+                    <li ng-repeat="ride in driver.rides">
+                        {{ ride.sourcesName + '-' + ride.destinationsName + '; Status: ' + ride.status +'(' + ride.availableSeats + ' available seats)' }}
+                        <button ng-click="$ctrl.deleteRide(ride.id)">Delete</button>
+                        <button ng-click="$ctrl.updateRideAsOnTheRoad(ride.id)">On the road</button>
+                        <button ng-click="$ctrl.updateRideAsFinished(ride.id)">Finish</button>
+                    </li>
+                </ul> 
+            </td>
             <td>
                 <ul>
                     <li ng-repeat="car in driver.cars">
