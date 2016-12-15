@@ -13,16 +13,17 @@
                 <h1 class="page-label">
                     <span><i class="fa fa-taxi" aria-hidden="true"></i> Taxi Service</span>
                 </h1>
+                <nav>
+                    <ul class="custom-page-navigation-bar">
+                        <li><a ui-sref="users" ui-sref-active="active">Users</a></li>
+                        <li><a ui-sref="drivers" ui-sref-active="active">Drivers</a></li>
+                        <li><a ui-sref="clients" ui-sref-active="active">Clients</a></li>
+                        <li><a ui-sref="organizations" ui-sref-active="active">Organizations</a></li>
+                        <li><a ui-sref="routes" ui-sref-active="active">Routes</a></li>
+                    </ul>
+                </nav>
             </header>
             <div class="content-container">
-                <ul>
-                    <li><a ui-sref="users" ui-sref-active="active">Users</a></li>
-                    <li><a ui-sref="drivers" ui-sref-active="active">Drivers</a></li>
-                    <li><a ui-sref="clients" ui-sref-active="active">Clients</a></li>
-                    <li><a ui-sref="organizations" ui-sref-active="active">Organizations</a></li>
-                    <li><a ui-sref="routes" ui-sref-active="active">Routes</a></li>
-                </ul>
-
                 <ui-view style="height: 100px;"></ui-view>
             </div>
             <div class="push"></div>

@@ -15,8 +15,12 @@ body {
 
 body {
   background-color: $background-gray;
+  min-width: 800px;
 }
 
+table {
+  background-color: white;
+}
 a {
   text-decoration: none;
 }
@@ -49,13 +53,54 @@ section {
 }
 
 .content-container {
-  margin: 0px auto;
+  margin: 30px auto;
   width: 70%;
 }
 
 .custom-page-header {
-  padding: 30px;
+  display: flex;
+  justify-content: space-between;
   height: 100px;
+  padding: 30px;
+
+  .page-label {
+    margin: 0px;
+  }
+
+}
+
+td ul {
+  list-style-type: none;
+
+  li {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.main-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0px 10px 10px;
+}
+
+.custom-page-navigation-bar {
+  list-style-type: none;
+  padding-top: 10px;
+
+  li {
+    display: inline;
+    font-size: 18px;
+    margin-left: 10px;
+
+    a {
+      color: white;
+    }
+  }
 }
 
 .page-label {
@@ -95,6 +140,7 @@ section {
   cursor: pointer;
   text-decoration: underline;
 }
+
 
 .push {
   height: 200px;

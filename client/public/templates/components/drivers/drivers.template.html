@@ -2,8 +2,8 @@
     <thead>
         <tr>
             <th>First name</th>
-            <th>Cars</th>
             <th>Rides</th>
+            <th>Cars</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -14,9 +14,9 @@
                <ul>
                     <li ng-repeat="ride in driver.rides">
                         {{ ride.sourcesName + '-' + ride.destinationsName + '; Status: ' + ride.status +'(' + ride.availableSeats + ' available seats)' }}
-                        <button ng-click="$ctrl.deleteRide(ride.id)">Delete</button>
-                        <button ng-click="$ctrl.updateRideAsOnTheRoad(ride.id)">On the road</button>
-                        <button ng-click="$ctrl.updateRideAsFinished(ride.id)">Finish</button>
+                        <button class="btn btn-danger" ng-click="$ctrl.deleteRide(ride.id)">Delete</button>
+                        <button class="btn btn-default" ng-click="$ctrl.updateRideAsOnTheRoad(ride.id)">On the road</button>
+                        <button class="btn btn-default" ng-click="$ctrl.updateRideAsFinished(ride.id)">Finish</button>
                     </li>
                 </ul> 
             </td>
@@ -24,13 +24,13 @@
                 <ul>
                     <li ng-repeat="car in driver.cars">
                         {{ car.carsBrandsName + ' ' + car.carsModelsName + ' ' + car.manufactureYear }}
-                        <button ng-click="$ctrl.deleteCar(car.id)">Delete</button>
+                        <button class="btn btn-danger"ng-click="$ctrl.deleteCar(car.id)">Delete</button>
                     </li>
                 </ul>
             </td>
             <td>
-                <button ng-click="$ctrl.addCar(driver.id)">Add car</button>
-                <button ng-click="$ctrl.addRide(driver.id)">Add ride</button>
+                <button class="btn btn-default" ng-click="$ctrl.addCar(driver.id)">Add car</button>
+                <button class="btn btn-default" ng-click="$ctrl.addRide(driver.id)">Add ride</button>
             </td>
         </tr>
     </tbody>

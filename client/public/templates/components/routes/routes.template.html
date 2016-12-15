@@ -1,4 +1,7 @@
-<button ng-click="$ctrl.addRoute()">Add route</button>
+<div class="main-actions">
+    <button class="btn btn-default" ng-click="$ctrl.addRoute()"><i class="fa fa-road" aria-hidden="true"></i> Add route</button>
+</div>
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -36,8 +39,8 @@
                 {{ route.description }}
             </td>
             <td>
-                <button ng-click="$ctrl.updateRoute(route.id)">Update</button>
-                <button ng-click="$ctrl.deleteRoute(route.id)">Delete</button>
+                <button class="btn btn-default" ng-click="$ctrl.updateRoute(route.id)">Update</button>
+                <button class="btn btn-danger" ng-click="$ctrl.deleteRoute(route.id)">Delete</button>
             </td>
         </tr>
     </tbody>

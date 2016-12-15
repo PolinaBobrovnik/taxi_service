@@ -16,7 +16,7 @@
                 <ul>
                     <li ng-repeat="driver in organization.drivers">
                         {{ driver.firstname + ' ' + driver.lastname }}
-                        <button ng-click="$ctrl.deleteDriver(driver.id)">Delete</button>
+                        <button class="btn btn-danger" ng-click="$ctrl.deleteDriver(driver.id)">Delete</button>
                     </li>
                 </ul>
             </td>
@@ -24,14 +24,14 @@
                 <ul>
                     <li ng-repeat="comment in organization.comments">
                         {{ comment.clientsUsername + ' Rating: ' + comment.rating }}
-                        <button ng-click="$ctrl.deleteComment(comment.id)">Delete</button>
-                        <button ng-click="$ctrl.showCommentsDetails(comment)">Details</button>
+                        <button class="btn btn-danger" ng-click="$ctrl.deleteComment(comment.id)">Delete</button>
+                        <button class="btn btn-default" ng-click="$ctrl.showCommentsDetails(comment)">Details</button>
                     </li>
                 </ul>
             </td>
             <td>
-                <button ng-click="$ctrl.updateDescription(organization.description, organization.id)">Update</button>
-                <button ng-click="$ctrl.addDriver(organization.id)">Add driver</button>
+                <button class="btn btn-default" ng-click="$ctrl.updateDescription(organization.description, organization.id)">Update</button>
+                <button class="btn btn-default" ng-click="$ctrl.addDriver(organization.id)">Add driver</button>
             </td>
         </tr>
     </tbody>
