@@ -10,8 +10,13 @@
     <form>
         <div class="form-group">
             <label for="roles">Select role:</label>
-            <select id="roles" class="forms-select" ng-model="$ctrl.newUser.rolesId">
-                <option value="{{ role.id }}" ng-repeat="role in $ctrl.roles">{{ role.role }}</option>
+            <select 
+                id="roles" 
+                class="forms-select" 
+                ng-model="$ctrl.newUser.rolesId" 
+                ng-options="role.id as role.role for role in $ctrl.roles"
+            >
+                <option value="" selected hidden />
             </select>
         </div>
 

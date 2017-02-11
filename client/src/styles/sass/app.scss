@@ -113,13 +113,6 @@ td ul {
   right: 35px;
 }
 
-.contributor,
-.publish-date {
-  color: $flat-light-gray;
-  font-size: 14px;
-  text-align: right;  
-}
-
 .navigation-container {
   background-color: white;
   display: flex;
@@ -140,7 +133,6 @@ td ul {
   cursor: pointer;
   text-decoration: underline;
 }
-
 
 .push {
   height: 200px;

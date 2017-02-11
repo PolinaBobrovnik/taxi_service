@@ -10,10 +10,13 @@
     <form>        
         <div class="form-group">
             <label for="drivers">Select driver:</label>
-            <select id="drivers" class="forms-select" ng-model="$ctrl.driversId">
-                <option value="{{ driver.id }}" ng-repeat="driver in $ctrl.drivers">
-                    {{ driver.firstname + ' ' + driver.lastname }}
-                </option>
+            <select 
+                id="drivers" 
+                class="forms-select" 
+                ng-model="$ctrl.driversId"
+                ng-options="driver.id as driver.firstname + ' ' + driver.lastname for driver in $ctrl.drivers"
+            >   
+                <option value="" selected hidden />
             </select>
         </div>
         <div class="forms-buttons-container">

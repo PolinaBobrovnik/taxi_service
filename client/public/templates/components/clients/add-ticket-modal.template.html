@@ -10,19 +10,25 @@
     <form>
         <div class="form-group">
             <label for="rides">Select available ride:</label>
-            <select  id="rides" class="forms-select" ng-model="$ctrl.ticket.ridesId">
-                <option value="{{ ride.id }}" ng-repeat="ride in $ctrl.rides">
-                    {{ ride.sourcesName + '-' + ride.destinationsName + ride.departureTime }}
-                </option>
+            <select  
+                id="rides" 
+                class="forms-select" 
+                ng-model="$ctrl.ticket.ridesId"
+                ng-options="ride.id as ride.sourcesName + '-' + ride.destinationsName + ride.departureTime for ride in $ctrl.rides"
+            >
+                <option value="" selected hidden />
             </select>
         </div>
 
         <div class="form-group">
             <label for="pt">Select payment type:</label>
-            <select id="pt" class="forms-select" ng-model="$ctrl.ticket.paymentTypesId">
-                <option value="{{ pt.id }}" ng-repeat="pt in $ctrl.paymentTypes">
-                    {{ pt.type }}
-                </option>
+            <select 
+                id="pt" 
+                class="forms-select" 
+                ng-model="$ctrl.ticket.paymentTypesId"
+                ng-options="pt.id as pt.type for pt in $ctrl.paymentTypes"
+            >
+                <option value="" selected hidden />
             </select>
         </div>
 

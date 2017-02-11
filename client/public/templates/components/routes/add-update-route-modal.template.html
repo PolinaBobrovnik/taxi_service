@@ -10,19 +10,25 @@
     <form>        
         <div class="form-group">
             <label for="sources">Select source:</label>
-            <select id="sources" class="forms-select" ng-model="$ctrl.route.sourcesId">
-                <option ng-selected="{{point.id == 2}}" value="{{ point.id }}" ng-repeat="point in $ctrl.points">
-                    {{ point.name }}
-                </option>
+            <select 
+                id="sources" 
+                class="forms-select" 
+                ng-model="$ctrl.route.sourcesId"
+                ng-options="point.id as point.name for point in $ctrl.points"
+            >
+                <option value="" selected hidden />
             </select>
         </div>
 
         <div class="form-group">
             <label for="destinations">Select destination:</label>
-            <select id="destinations" class="forms-select" ng-model="$ctrl.route.destinationsId">
-                <option value="{{ point.id }}" ng-repeat="point in $ctrl.points">
-                    {{ point.name }}
-                </option>
+            <select 
+                id="destinations" 
+                class="forms-select" 
+                ng-model="$ctrl.route.destinationsId"
+                ng-options="point.id as point.name for point in $ctrl.points"
+            >
+                <option value="" selected hidden />
             </select>
         </div>
 

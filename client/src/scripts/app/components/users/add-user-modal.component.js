@@ -14,11 +14,12 @@
 
     function AddUserModalController(usersHttpService) {
         var self = this;
+        self.newUser = {};
 
         self.$onInit = function() {
             usersHttpService.getRoles()
                 .then(function(response) {
-                    self.roles = response.data
+                    self.roles = response.data;
                 });
         };
 

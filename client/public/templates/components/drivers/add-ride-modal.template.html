@@ -10,19 +10,25 @@
     <form>
         <div class="form-group">
             <label for="routes">Select route:</label>
-            <select id="routes" class="forms-select" ng-model="$ctrl.ride.routesId">
-                <option value="{{ route.id }}" ng-repeat="route in $ctrl.routes">
-                    {{ route.sourcesName + '-' + route.destinationsName }}
-                </option>
+            <select 
+                id="routes" 
+                class="forms-select" 
+                ng-model="$ctrl.ride.routesId"
+                ng-options="route.id as route.sourcesName + '-' + route.destinationsName for route in $ctrl.routes"
+            >
+                <option value="" selected hidden />
             </select>
         </div>
 
         <div class="form-group">
             <label for="cars">Select car:</label>
-            <select id="cars" class="forms-select" ng-model="$ctrl.ride.carsId">
-                <option value="{{ car.id }}" ng-repeat="car in $ctrl.cars">
-                    {{ car.carsBrandsName + ' ' + car.carsModelsName + ' ' + car.licensePlate }}
-                </option>
+            <select 
+                id="cars" 
+                class="forms-select" 
+                ng-model="$ctrl.ride.carsId"
+                ng-options="car.id as car.carsBrandsName + ' ' + car.carsModelsName + ' ' + car.licensePlate for car in $ctrl.cars"
+            >
+                <option value="" selected hidden />
             </select>
         </div>
 

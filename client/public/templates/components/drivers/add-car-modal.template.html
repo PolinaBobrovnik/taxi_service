@@ -10,15 +10,26 @@
     <form>
         <div class="form-group">
             <label for="brands">Select car's brand:</label>
-            <select id="brands" class="forms-select" ng-model="$ctrl.car.carsBrandsId" ng-change="$ctrl.getCarsModels()">
-                <option value="{{ brand.carsBrandsId }}" ng-repeat="brand in $ctrl.carsBrands">{{ brand.carsBrandsName }}</option>
+            <select 
+                id="brands" 
+                class="forms-select" 
+                ng-model="$ctrl.car.carsBrandsId" 
+                ng-change="$ctrl.getCarsModels()"
+                ng-options="brand.carsBrandsId as brand.carsBrandsName for brand in  $ctrl.carsBrands"
+            >
+                <option value="" selected hidden />
             </select>
         </div>
 
         <div class="form-group">
             <label for="models">Select car's model:</label>
-            <select id="models" class="forms-select" ng-model="$ctrl.car.carsModelsId">
-                <option value="{{ model.carsModelsId }}" ng-repeat="model in $ctrl.carsModels">{{ model.carsModelsName }}</option>
+            <select 
+                id="models" 
+                class="forms-select" 
+                ng-model="$ctrl.car.carsModelsId"
+                ng-options="model.carsModelsId as model.carsModelsName for model in $ctrl.carsModels"
+            >
+                <option value="" selected hidden />
             </select>
         </div>
         

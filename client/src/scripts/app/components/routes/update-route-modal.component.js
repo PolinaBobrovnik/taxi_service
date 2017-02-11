@@ -22,9 +22,8 @@
         };
 
         self.$onInit = function() {
-            
             $q.all([
-                routesHttpService.getRouteById(self.route.routesId),
+                routesHttpService.getRouteById(self.resolve.routesId),
                 routesHttpService.getPoints()
             ]).then(function(response) {
                 self.route.sourcesId = response[0].data.sourcesId;
