@@ -22,7 +22,7 @@ insert into ratings (rating) values ('very good'),
 									('normally'),
                                     ('bad');
 
-insert into statuses (status) values ('registration is opended'),
+insert into statuses (status) values ('registration is opened'),
 									 ('registration is closed'),
 									 ('on the road'),
                                      ('ride is finished');
